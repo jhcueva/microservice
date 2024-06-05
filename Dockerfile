@@ -7,8 +7,7 @@ COPY . /app
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 
 # Use the correct format for cache mounts
-RUN --mount=type=cache,target=/var/cache/apt,id=apt-cache \
-    apt-get update && apt-get install -yqq --no-install-recommends wget unzip \
+RUN apt-get update && apt-get install -yqq --no-install-recommends wget unzip \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
     && apt-get install -yqq --no-install-recommends ./google-chrome-stable_current_amd64.deb \
     && rm google-chrome-stable_current_amd64.deb \
